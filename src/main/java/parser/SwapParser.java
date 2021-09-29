@@ -18,7 +18,7 @@ public class SwapParser {
         try {
             fillSymbolsList(node);
         } catch (NullPointerException e) {
-            System.out.println("Something wrong with json file");
+            System.out.println("Something is wrong with json file");
             return;
         }
         InputOutput.writeParsedSwaps(SYMBOLS_LIST);

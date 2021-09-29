@@ -35,7 +35,7 @@ public class InputOutput {
                     return path;
                 }
             }
-            System.out.println("File either is not exist or is not json. Check and enter the path again");
+            System.out.println("File either doesn't exist or that is not a json. Check and enter the path again");
         }
     }
 
@@ -48,7 +48,7 @@ public class InputOutput {
             if (Files.exists(path) && Files.isDirectory(path)) {
                 return path;
             }
-            System.out.println("Folder either is not exist or that is not a folder. Check and enter the path again");
+            System.out.println("Folder either doesn't exist or that is not a folder. Check and enter the path again");
         }
     }
 
