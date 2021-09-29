@@ -52,11 +52,11 @@ public class InputOutput {
         }
     }
 
-    public static void writeParsedSwaps (List<SwapParser.Symbol> symbols){
+    public static void writeParsedSwaps (List<Symbol> symbols){
         String folder = pathWhereToStore().toString();
         Path path = Paths.get(folder + "\\MT5 Symbols and swaps.csv");
+        int count = 1;
         while (Files.exists(path)) {
-            int count = 1;
             path = Paths.get(folder + "\\MT5 Symbols and swaps_" + count + ".csv");
             count++;
         }
@@ -68,7 +68,7 @@ public class InputOutput {
         try(BufferedWriter writer = Files.newBufferedWriter(path)) {
             writer.write("sep=,\n");
             writer.write("Symbol,Swap Long,Swap Short,3-days swap\n");
-            for (SwapParser.Symbol symbol : symbols) {
+            for (Symbol symbol : symbols) {
                 writer.write(symbol.toString());
             }
         } catch (IOException e) {
