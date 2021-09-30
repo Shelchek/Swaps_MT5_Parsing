@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -30,10 +31,15 @@ public class InputOutput {
         while (true) {
             String fromConsole = askToEnter().replaceAll("\"","");
             if (fromConsole.endsWith("json")) {
-                path = Paths.get(fromConsole);
-                if (Files.exists(path) && Files.isRegularFile(path)) {
-                    return path;
+                try {
+                    path = Paths.get(fromConsole);
+                    if (Files.exists(path) && Files.isRegularFile(path)) {
+                        return path;
+                    }
+                } catch (InvalidPathException e) {
+                    System.out.println("Wrong path format");
                 }
+
             }
             System.out.println("File either doesn't exist or that is not a json. Check and enter the path again");
         }
@@ -44,9 +50,13 @@ public class InputOutput {
         System.out.println("Enter the path for folder where to store the parsed data");
         while (true) {
             String fromConsole = askToEnter().replaceAll("\"","");
-            path = Paths.get(fromConsole);
-            if (Files.exists(path) && Files.isDirectory(path)) {
-                return path;
+            try {
+                path = Paths.get(fromConsole);
+                if (Files.exists(path) && Files.isDirectory(path)) {
+                    return path;
+                }
+            } catch (InvalidPathException e) {
+                System.out.println("Wrong path format");
             }
             System.out.println("Folder either doesn't exist or that is not a folder. Check and enter the path again");
         }
