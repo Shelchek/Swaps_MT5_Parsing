@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>Swaps_MT5_Parsing</artifactId>
-    <version>2.0</version>
+    <artifactId>Swap_Parser</artifactId>
+    <version>2.1</version>
     <packaging>jar</packaging>
     <build>
         <plugins>
@@ -32,7 +32,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        parser.SwapParser
+                                        parser.Main
                                     </mainClass>
                                 </manifest>
                             </archive>

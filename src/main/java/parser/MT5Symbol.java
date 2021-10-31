@@ -1,12 +1,12 @@
 package parser;
 
-public class Symbol {
+public class MT5Symbol {
     private final String symbolName;
     private final double swapLong;
     private final double swapShort;
     private final String swap3Day;
 
-    public Symbol(String symbolName, double swapLong, double swapShort, int swap3Day) {
+    public MT5Symbol(String symbolName, double swapLong, double swapShort, int swap3Day) {
         this.symbolName = symbolName;
         this.swapLong = swapLong;
         this.swapShort = swapShort;
