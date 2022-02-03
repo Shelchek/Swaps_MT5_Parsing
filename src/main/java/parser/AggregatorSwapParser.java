@@ -20,6 +20,10 @@ public class AggregatorSwapParser {
     public AggregatorSwapParser() {
         symbolNameException.put("NK1JPY", "NKYJPY");
         symbolNameException.put("SP1USD", "SPXUSD");
+        symbolNameException.put("SP2USD", "SPXUSD");
+        symbolNameException.put("DJ2USD", "DJ1USD");
+        symbolNameException.put("ND2USD", "ND1USD");
+        symbolNameException.put("NK2JPY", "NKYJPY");
     }
 
 
