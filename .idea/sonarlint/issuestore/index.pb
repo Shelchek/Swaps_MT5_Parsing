@@ -1,0 +1,3 @@
+
+h
+8.idea/libraries/apache_maven_plugins_assembly_plugin.xml,3\9\395bd2144dab1ee078eb7dfab3200426b974ba12

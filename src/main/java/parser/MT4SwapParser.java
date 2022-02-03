@@ -1,7 +1,5 @@
 package parser;
 
-import com.fasterxml.jackson.databind.JsonNode;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -14,9 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MT4SwapParser {
-    static final List<String> PARSED_RESULT = new ArrayList<>();
+    private final List<String> parsedResult = new ArrayList<>();
 
-    private static Path pathSymbolFilter() {
+    private Path pathSymbolFilter() {
         Path path = Paths.get("");
         try {
             path = Paths.get(MT5SwapParser.class.getProtectionDomain().getCodeSource().
@@ -27,7 +25,7 @@ public class MT4SwapParser {
         return Paths.get(path + "\\MT4_Swaps\\MT4Symbol_Filter.csv");
     }
 
-    static Path pathSymbolsToParse() {
+    Path pathSymbolsToParse() {
         Path path = Paths.get("");
         try {
             path = Paths.get(MT5SwapParser.class.getProtectionDomain().getCodeSource().
@@ -38,7 +36,7 @@ public class MT4SwapParser {
         return Paths.get(path + "\\MT4_Swaps\\SymbolsToParse.txt");
     }
 
-    static void fillSymbolsList() {
+    void fillSymbolsList() {
         ArrayList<String> symbolFilter = new ArrayList<>();
         if (Files.exists(pathSymbolFilter())) {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(Files.newInputStream(pathSymbolFilter())))) {
@@ -56,7 +54,7 @@ public class MT4SwapParser {
                 String[] params = line.split("\t");
                 if (symbolFilter.contains(params[0])) {
                     String toAdd = params[0] + "," + params[6] + "," + params[7] + "\n";
-                    PARSED_RESULT.add(toAdd);
+                    parsedResult.add(toAdd);
                 }
             }
         } catch (IOException e) {
@@ -64,7 +62,7 @@ public class MT4SwapParser {
         }
     }
 
-    static void writeParsedSwaps() {
+    void writeParsedSwaps() {
         Path path = Paths.get("");
         try {
             path = Paths.get(MT5SwapParser.class.getProtectionDomain().getCodeSource().
@@ -72,11 +70,11 @@ public class MT4SwapParser {
         } catch (URISyntaxException e) {
             System.out.println("Something went wrong with resolving path to the folder where to store file");
         }
-        Path filePath = Paths.get(path + "\\MT4_Swaps\\MT4 Symbols and swaps.csv");
+        Path filePath = Paths.get(path + "\\Results\\MT4 Symbols and swaps.csv");
         try {
             int count = 1;
             while (Files.exists(filePath)) {
-                filePath = Paths.get(path + "\\MT4_Swaps\\MT4 Symbols and swaps_" + count + ".csv");
+                filePath = Paths.get(path + "\\Results\\MT4 Symbols and swaps_" + count + ".csv");
                 count++;
             }
             Files.createFile(filePath);
@@ -86,7 +84,7 @@ public class MT4SwapParser {
         try (BufferedWriter writer = Files.newBufferedWriter(filePath)) {
             writer.write("sep=,\n");
             writer.write("Symbol,Long,Short\n");
-            for (String symbol : PARSED_RESULT) {
+            for (String symbol : parsedResult) {
                 writer.write(symbol);
             }
         } catch (IOException e) {

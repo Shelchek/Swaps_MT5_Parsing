@@ -12,14 +12,15 @@ public class MT5Symbol {
         this.swapShort = swapShort;
         this.swap3Day = dayOfWeek(swap3Day);
     }
-    private String dayOfWeek (int dayNumber) throws IllegalArgumentException {
+
+    private String dayOfWeek(int dayNumber) throws IllegalArgumentException {
         switch (dayNumber) {
             case 1:
                 return "Monday";
             case 2:
                 return "Tuesday";
             case 3:
-                return  "Wednesday";
+                return "Wednesday";
             case 4:
                 return "Thursday";
             case 5:
@@ -27,9 +28,9 @@ public class MT5Symbol {
             case 6:
                 return "Saturday";
             case 7:
-                return  "Sunday";
+                return "Sunday";
             default:
-                System.out.println("Wrong number of \"Swap3Day\" for Symbol: "+symbolName);
+                System.out.println("Wrong number of \"Swap3Day\" for Symbol: " + symbolName);
                 throw new IllegalArgumentException();
         }
     }
@@ -53,6 +54,6 @@ public class MT5Symbol {
     //Creates the csv formatted string
     @Override
     public String toString() {
-        return symbolName + "," + swapLong + "," + swapShort + "," + swap3Day +"\n";
+        return symbolName + "," + swapLong + "," + swapShort + "," + swap3Day + "\n";
     }
 }
