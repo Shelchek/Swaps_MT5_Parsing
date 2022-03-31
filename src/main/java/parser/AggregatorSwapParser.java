@@ -87,10 +87,6 @@ public class AggregatorSwapParser {
                         String toAdd = String.format("\"%s\",\"%s\",\"%s\",\"%s\"%n", symbol, params[2], params[3], params[4]);
                         parsedResult.add(toAdd);
                     }
-//                    if (symbolNameException.containsKey(symbol) && symbolNameException.get(symbol).equals(params[0])) {
-//                        String toAdd = String.format("\"%s\",\"%s\",\"%s\",\"%s\"%n", symbol, params[2], params[3], params[4]);
-//                        parsedResult.add(toAdd);
-//                    }
                 }
             }
         } catch (IOException e) {

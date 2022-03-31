@@ -17,6 +17,7 @@ public class Main {
             System.out.println("2 -> MT4 Swaps parse");
             System.out.println("3 -> UK aggregator parse");
             System.out.println("4 -> MU aggregator parse");
+            System.out.println("5 -> All operations above");
             System.out.println("0 -> Exit");
             int number;
             try {
@@ -25,6 +26,12 @@ public class Main {
                 else if (number == 2) MT4Parse();
                 else if(number == 3) aggrParse(3);
                 else if (number == 4) aggrParse(4);
+                else if (number == 5) {
+                    MT4Parse();
+                    MT5Parse();
+                    aggrParse(3);
+                    aggrParse(4);
+                }
                 else if (number == 0) {
                     System.out.println("See you next time. Bye Bye!");
                     Thread.sleep(1000);
@@ -53,14 +60,14 @@ public class Main {
             return;
         }
         parser.writeParsedSwaps();
-        System.out.println("MT5 Swaps are parsed");
+        System.out.println("MT5 Swaps are parsed\n");
     }
 
     private static void MT4Parse () {
         MT4SwapParser parser = new MT4SwapParser();
         parser.fillSymbolsList();
         parser.writeParsedSwaps();
-        System.out.println("MT4 Swaps are parsed");
+        System.out.println("MT4 Swaps are parsed\n");
     }
 
     private static void aggrParse(int ent) {
@@ -70,6 +77,6 @@ public class Main {
         AggregatorSwapParser parser = new AggregatorSwapParser();
         parser.fillParsedResult(entity);
         parser.writeParsedSwaps(entity);
-        System.out.println("Aggregator's swaps are parsed. File for import is created");
+        System.out.println("Aggregator's " + entity + " swaps are parsed. File for import is created\n");
     }
 }
